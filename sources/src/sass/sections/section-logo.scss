@@ -1,13 +1,15 @@
-.section-logo{
+.section-logo {
   background-color: #7f7f7f;
 
   padding: 9rem 0;
+
+  overflow: hidden;
 
   @media screen and (max-width: $table-screen) {
     padding: 5rem 0;
   }
 
-  &__title{
+  &__title {
     font-size: 4rem;
     font-weight: 700;
 
@@ -22,19 +24,19 @@
       font-size: 3rem;
     }
 
-    &--partners{
+    &--partners {
       margin-top: 9rem;
     }
   }
 
-  &__slide-partners{
+  &__slide-partners {
     padding: 0 2rem;
 
     @media screen and (max-width: $table-screen) {
       padding: 0 1rem;
     }
 
-    &-inner{
+    &-inner {
       display: flex;
       align-items: flex-start;
       justify-content: center;
@@ -42,20 +44,20 @@
       position: relative;
     }
 
-    &-icon{
+    &-icon {
       width: max-content;
       height: 100%;
 
       position: relative;
 
-      &:hover{
-        .img-hover{
+      &:hover {
+        .img-hover {
           opacity: 1;
         }
       }
     }
 
-    .img-normal{
+    .img-normal {
       height: 7.8rem;
       width: auto;
 
@@ -70,7 +72,7 @@
       z-index: 10;
     }
 
-    .img-hover{
+    .img-hover {
       height: 7.8rem;
       width: auto;
 
@@ -91,14 +93,14 @@
     }
   }
 
-  &__slide-client{
+  &__slide-client {
     padding: 0 2rem;
 
     @media screen and (max-width: $table-screen) {
       padding: 0 1rem;
     }
 
-    &-inner{
+    &-inner {
       height: 100%;
 
       display: flex;
@@ -106,20 +108,20 @@
       justify-content: center;
     }
 
-    &-inner:hover{
-      .img-hover{
+    &-inner:hover {
+      .img-hover {
         opacity: 1;
       }
     }
 
-    &-icon{
+    &-icon {
       width: 100%;
       height: 100%;
 
       position: relative;
     }
 
-    .img-normal{
+    .img-normal {
       height: 5.8rem;
       width: auto;
       max-width: 100%;
@@ -135,7 +137,7 @@
       z-index: 10;
     }
 
-    .img-hover{
+    .img-hover {
       height: 5.8rem;
       width: auto;
       max-width: 100%;
@@ -155,14 +157,37 @@
     }
   }
 
-  .slick-track{
+  .logos {
     display: flex;
-    align-items: stretch;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: max-content;
   }
 
-  .slick-slide{
-    @media screen and (max-width: $desctop-xs) {
+  &__slider-clients{
+    animation: animClients 40s linear infinite;
+  }
 
-    }
+  &__slider-partners{
+    animation: animPartners 15s linear infinite;
+  }
+}
+
+@keyframes animClients {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes animPartners {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }
