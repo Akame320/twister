@@ -1,46 +1,43 @@
 {
-  "_args": [
-    [
-      "simplebar@5.2.1",
-      "/home/ruzen/WebstormProjects/test/orhi/sources"
-    ]
-  ],
-  "_from": "simplebar@5.2.1",
-  "_id": "simplebar@5.2.1",
+  "_from": "simplebar@^5.2.1",
+  "_id": "simplebar@5.3.6",
   "_inBundle": false,
-  "_integrity": "sha512-nfOsptB/tb1kzSOaDIJFcrm8EXj5J0pZBPLGetJR8SE6v+97cbedtlNH/L81okgjsFlF11kDndmZ0mscaGAILw==",
+  "_integrity": "sha512-FJUMbV+hNDd/m+1/fvD41TXKd5mSdlI5zgBygkaQIV3SffNbcLhSbJT6ufTs8ZNRLJ6i+qc/KCFMqWmvlGWMhA==",
   "_location": "/simplebar",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "simplebar@5.2.1",
+    "raw": "simplebar@^5.2.1",
     "name": "simplebar",
     "escapedName": "simplebar",
-    "rawSpec": "5.2.1",
+    "rawSpec": "^5.2.1",
     "saveSpec": null,
-    "fetchSpec": "5.2.1"
+    "fetchSpec": "^5.2.1"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/simplebar/-/simplebar-5.2.1.tgz",
-  "_spec": "5.2.1",
-  "_where": "/home/ruzen/WebstormProjects/test/orhi/sources",
+  "_resolved": "https://registry.npmjs.org/simplebar/-/simplebar-5.3.6.tgz",
+  "_shasum": "d9383576a09a6fd09e19543f8e9906a3e87c3896",
+  "_spec": "simplebar@^5.2.1",
+  "_where": "/home/ruzen/work/twister/work/sources",
   "author": {
     "name": "Adrien Denat from a fork by Jonathan Nicol"
   },
   "bugs": {
     "url": "https://github.com/grsmto/simplebar/issues"
   },
+  "bundleDependencies": false,
   "dependencies": {
+    "@juggle/resize-observer": "^3.3.1",
     "can-use-dom": "^0.1.0",
     "core-js": "^3.0.1",
     "lodash.debounce": "^4.0.8",
     "lodash.memoize": "^4.1.2",
-    "lodash.throttle": "^4.1.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "lodash.throttle": "^4.1.1"
   },
+  "deprecated": false,
   "description": "Scrollbars, simpler.",
   "devDependencies": {
     "css-loader": "^0.28.11",
@@ -56,7 +53,7 @@
     "src",
     "README.md"
   ],
-  "gitHead": "0ca9cf62079f9f6116ec2588c5cd374e80a505fa",
+  "gitHead": "40b847916bfdd96a46dce6e9af0128b239dc70d5",
   "homepage": "https://grsmto.github.io/simplebar/",
   "license": "MIT",
   "lint-staged": {
@@ -74,7 +71,7 @@
     "directory": "packages/simplebar"
   },
   "scripts": {
-    "build": "rollup -c && cp src/simplebar.css dist/simplebar.css && minify dist/simplebar.css > dist/simplebar.min.css && webpack --mode=production",
+    "build": "rollup -c && cp src/simplebar.css dist/simplebar.css && cp simplebar.d.ts dist/simplebar.d.ts && minify dist/simplebar.css > dist/simplebar.min.css && webpack --mode=production",
     "dev": "rollup -c -w",
     "precommit": "lint-staged",
     "start": "webpack-dev-server --mode=development",
@@ -85,5 +82,6 @@
   },
   "style": "dist/simplebar.min.css",
   "title": "SimpleBar.js",
-  "version": "5.2.1"
+  "types": "dist/simplebar.d.ts",
+  "version": "5.3.6"
 }

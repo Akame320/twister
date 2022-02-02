@@ -1,7 +1,7 @@
 import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
 import memoize from 'lodash.memoize';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from '@juggle/resize-observer';
 import canUseDOM from 'can-use-dom';
 import scrollbarWidth from './scrollbar-width';
 import { getElementWindow, getElementDocument } from './helpers';
@@ -109,6 +109,7 @@ export default class SimpleBar {
     autoHide: true,
     forceVisible: false,
     clickOnTrack: true,
+    clickOnTrackSpeed: 40,
     classNames: {
       contentEl: 'simplebar-content',
       contentWrapper: 'simplebar-content-wrapper',
@@ -155,6 +156,8 @@ export default class SimpleBar {
     // We stop here on server-side
     if (canUseDOM) {
       this.initDOM();
+
+      this.setAccessibilityAttributes();
 
       this.scrollbarWidth = this.getScrollbarWidth();
 
@@ -273,6 +276,14 @@ export default class SimpleBar {
     this.el.setAttribute('data-simplebar', 'init');
   }
 
+  setAccessibilityAttributes() {
+    const ariaLabel = this.options.ariaLabel || 'scrollable content';
+
+    this.contentWrapperEl.setAttribute('tabindex', '0');
+    this.contentWrapperEl.setAttribute('role', 'region');
+    this.contentWrapperEl.setAttribute('aria-label', ariaLabel);
+  }
+
   initListeners() {
     const elWindow = getElementWindow(this.el);
     // Event listeners
@@ -329,11 +340,9 @@ export default class SimpleBar {
     this.elStyles = elWindow.getComputedStyle(this.el);
     this.isRtl = this.elStyles.direction === 'rtl';
 
-    const contentElOffsetWidth = this.contentEl.offsetWidth;
-
     const isHeightAuto = this.heightAutoObserverEl.offsetHeight <= 1;
-    const isWidthAuto =
-      this.heightAutoObserverEl.offsetWidth <= 1 || contentElOffsetWidth > 0;
+    const isWidthAuto = this.heightAutoObserverEl.offsetWidth <= 1;
+    const contentElOffsetWidth = this.contentEl.offsetWidth;
 
     const contentWrapperElOffsetWidth = this.contentWrapperEl.offsetWidth;
 
@@ -350,14 +359,13 @@ export default class SimpleBar {
 
     // Determine placeholder size
     this.placeholderEl.style.width = isWidthAuto
-      ? `${contentElOffsetWidth || contentElScrollWidth}px`
+      ? `${contentElOffsetWidth}px`
       : 'auto';
     this.placeholderEl.style.height = `${contentElScrollHeight}px`;
 
     const contentWrapperElOffsetHeight = this.contentWrapperEl.offsetHeight;
 
-    this.axis.x.isOverflowing =
-      contentElOffsetWidth !== 0 && contentElScrollWidth > contentElOffsetWidth;
+    this.axis.x.isOverflowing = contentElScrollWidth > contentElOffsetWidth;
     this.axis.y.isOverflowing =
       contentElScrollHeight > contentWrapperElOffsetHeight;
 
@@ -806,12 +814,11 @@ export default class SimpleBar {
         : this.mouseX - scrollbarOffset;
     const dir = t < 0 ? -1 : 1;
     const scrollSize = dir === -1 ? scrolled - hostSize : scrolled + hostSize;
-    const speed = 40;
 
     const scrollTo = () => {
       if (dir === -1) {
         if (scrolled > scrollSize) {
-          scrolled -= speed;
+          scrolled -= this.options.clickOnTrackSpeed;
           this.contentWrapperEl.scrollTo({
             [this.axis[axis].offsetAttr]: scrolled
           });
@@ -819,7 +826,7 @@ export default class SimpleBar {
         }
       } else {
         if (scrolled < scrollSize) {
-          scrolled += speed;
+          scrolled += this.options.clickOnTrackSpeed;
           this.contentWrapperEl.scrollTo({
             [this.axis[axis].offsetAttr]: scrolled
           });
@@ -857,10 +864,10 @@ export default class SimpleBar {
       ) {
         return 0;
       } else {
-        return scrollbarWidth();
+        return scrollbarWidth(this.el);
       }
     } catch (e) {
-      return scrollbarWidth();
+      return scrollbarWidth(this.el);
     }
   }
 
@@ -885,11 +892,19 @@ export default class SimpleBar {
     this.el.removeEventListener('mousemove', this.onMouseMove);
     this.el.removeEventListener('mouseleave', this.onMouseLeave);
 
-    this.contentWrapperEl.removeEventListener('scroll', this.onScroll);
+    if (this.contentWrapperEl) {
+      this.contentWrapperEl.removeEventListener('scroll', this.onScroll);
+    }
+
     elWindow.removeEventListener('resize', this.onWindowResize);
 
-    this.mutationObserver.disconnect();
-    this.resizeObserver.disconnect();
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
 
     // Cancel all debounced functions
     this.recalculate.cancel();

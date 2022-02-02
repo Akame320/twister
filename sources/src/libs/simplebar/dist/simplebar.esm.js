@@ -1,5 +1,5 @@
 /**
- * SimpleBar.js - v5.2.1
+ * SimpleBar.js - v5.3.6
  * Scrollbars, simpler.
  * https://grsmto.github.io/simplebar/
  *
@@ -21,43 +21,12 @@ import 'core-js/modules/web.dom-collections.iterator';
 import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
 import memoize from 'lodash.memoize';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from '@juggle/resize-observer';
 import 'core-js/modules/es.array.reduce';
 import 'core-js/modules/es.function.name';
 import 'core-js/modules/es.regexp.exec';
 import 'core-js/modules/es.string.match';
 import 'core-js/modules/es.string.replace';
-
-var cachedScrollbarWidth = null;
-var cachedDevicePixelRatio = null;
-
-if (canUseDOM) {
-  window.addEventListener('resize', function () {
-    if (cachedDevicePixelRatio !== window.devicePixelRatio) {
-      cachedDevicePixelRatio = window.devicePixelRatio;
-      cachedScrollbarWidth = null;
-    }
-  });
-}
-
-function scrollbarWidth() {
-  if (cachedScrollbarWidth === null) {
-    if (typeof document === 'undefined') {
-      cachedScrollbarWidth = 0;
-      return cachedScrollbarWidth;
-    }
-
-    var body = document.body;
-    var box = document.createElement('div');
-    box.classList.add('simplebar-hide-scrollbar');
-    body.appendChild(box);
-    var width = box.getBoundingClientRect().right;
-    body.removeChild(box);
-    cachedScrollbarWidth = width;
-  }
-
-  return cachedScrollbarWidth;
-}
 
 // Helper function to retrieve options from element attributes
 var getOptions = function getOptions(obj) {
@@ -104,6 +73,39 @@ function getElementDocument(element) {
   }
 
   return element.ownerDocument;
+}
+
+var cachedScrollbarWidth = null;
+var cachedDevicePixelRatio = null;
+
+if (canUseDOM) {
+  window.addEventListener('resize', function () {
+    if (cachedDevicePixelRatio !== window.devicePixelRatio) {
+      cachedDevicePixelRatio = window.devicePixelRatio;
+      cachedScrollbarWidth = null;
+    }
+  });
+}
+
+function scrollbarWidth(el) {
+  if (cachedScrollbarWidth === null) {
+    var document = getElementDocument(el);
+
+    if (typeof document === 'undefined') {
+      cachedScrollbarWidth = 0;
+      return cachedScrollbarWidth;
+    }
+
+    var body = document.body;
+    var box = document.createElement('div');
+    box.classList.add('simplebar-hide-scrollbar');
+    body.appendChild(box);
+    var width = box.getBoundingClientRect().right;
+    body.removeChild(box);
+    cachedScrollbarWidth = width;
+  }
+
+  return cachedScrollbarWidth;
 }
 
 var SimpleBar =
@@ -402,6 +404,7 @@ function () {
 
     if (canUseDOM) {
       this.initDOM();
+      this.setAccessibilityAttributes();
       this.scrollbarWidth = this.getScrollbarWidth();
       this.recalculate();
       this.initListeners();
@@ -484,6 +487,13 @@ function () {
     this.el.setAttribute('data-simplebar', 'init');
   };
 
+  _proto.setAccessibilityAttributes = function setAccessibilityAttributes() {
+    var ariaLabel = this.options.ariaLabel || 'scrollable content';
+    this.contentWrapperEl.setAttribute('tabindex', '0');
+    this.contentWrapperEl.setAttribute('role', 'region');
+    this.contentWrapperEl.setAttribute('aria-label', ariaLabel);
+  };
+
   _proto.initListeners = function initListeners() {
     var _this3 = this;
 
@@ -533,9 +543,9 @@ function () {
     var elWindow = getElementWindow(this.el);
     this.elStyles = elWindow.getComputedStyle(this.el);
     this.isRtl = this.elStyles.direction === 'rtl';
-    var contentElOffsetWidth = this.contentEl.offsetWidth;
     var isHeightAuto = this.heightAutoObserverEl.offsetHeight <= 1;
-    var isWidthAuto = this.heightAutoObserverEl.offsetWidth <= 1 || contentElOffsetWidth > 0;
+    var isWidthAuto = this.heightAutoObserverEl.offsetWidth <= 1;
+    var contentElOffsetWidth = this.contentEl.offsetWidth;
     var contentWrapperElOffsetWidth = this.contentWrapperEl.offsetWidth;
     var elOverflowX = this.elStyles.overflowX;
     var elOverflowY = this.elStyles.overflowY;
@@ -545,10 +555,10 @@ function () {
     var contentElScrollWidth = this.contentEl.scrollWidth;
     this.contentWrapperEl.style.height = isHeightAuto ? 'auto' : '100%'; // Determine placeholder size
 
-    this.placeholderEl.style.width = isWidthAuto ? (contentElOffsetWidth || contentElScrollWidth) + "px" : 'auto';
+    this.placeholderEl.style.width = isWidthAuto ? contentElOffsetWidth + "px" : 'auto';
     this.placeholderEl.style.height = contentElScrollHeight + "px";
     var contentWrapperElOffsetHeight = this.contentWrapperEl.offsetHeight;
-    this.axis.x.isOverflowing = contentElOffsetWidth !== 0 && contentElScrollWidth > contentElOffsetWidth;
+    this.axis.x.isOverflowing = contentElScrollWidth > contentElOffsetWidth;
     this.axis.y.isOverflowing = contentElScrollHeight > contentWrapperElOffsetHeight; // Set isOverflowing to false if user explicitely set hidden overflow
 
     this.axis.x.isOverflowing = elOverflowX === 'hidden' ? false : this.axis.x.isOverflowing;
@@ -757,14 +767,13 @@ function () {
     var t = axis === 'y' ? this.mouseY - scrollbarOffset : this.mouseX - scrollbarOffset;
     var dir = t < 0 ? -1 : 1;
     var scrollSize = dir === -1 ? scrolled - hostSize : scrolled + hostSize;
-    var speed = 40;
 
     var scrollTo = function scrollTo() {
       if (dir === -1) {
         if (scrolled > scrollSize) {
           var _this4$contentWrapper;
 
-          scrolled -= speed;
+          scrolled -= _this4.options.clickOnTrackSpeed;
 
           _this4.contentWrapperEl.scrollTo((_this4$contentWrapper = {}, _this4$contentWrapper[_this4.axis[axis].offsetAttr] = scrolled, _this4$contentWrapper));
 
@@ -774,7 +783,7 @@ function () {
         if (scrolled < scrollSize) {
           var _this4$contentWrapper2;
 
-          scrolled += speed;
+          scrolled += _this4.options.clickOnTrackSpeed;
 
           _this4.contentWrapperEl.scrollTo((_this4$contentWrapper2 = {}, _this4$contentWrapper2[_this4.axis[axis].offsetAttr] = scrolled, _this4$contentWrapper2));
 
@@ -809,10 +818,10 @@ function () {
       if (getComputedStyle(this.contentWrapperEl, '::-webkit-scrollbar').display === 'none' || 'scrollbarWidth' in document.documentElement.style || '-ms-overflow-style' in document.documentElement.style) {
         return 0;
       } else {
-        return scrollbarWidth();
+        return scrollbarWidth(this.el);
       }
     } catch (e) {
-      return scrollbarWidth();
+      return scrollbarWidth(this.el);
     }
   };
 
@@ -836,10 +845,21 @@ function () {
     });
     this.el.removeEventListener('mousemove', this.onMouseMove);
     this.el.removeEventListener('mouseleave', this.onMouseLeave);
-    this.contentWrapperEl.removeEventListener('scroll', this.onScroll);
+
+    if (this.contentWrapperEl) {
+      this.contentWrapperEl.removeEventListener('scroll', this.onScroll);
+    }
+
     elWindow.removeEventListener('resize', this.onWindowResize);
-    this.mutationObserver.disconnect();
-    this.resizeObserver.disconnect(); // Cancel all debounced functions
+
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    } // Cancel all debounced functions
+
 
     this.recalculate.cancel();
     this.onMouseMove.cancel();
@@ -882,6 +902,7 @@ SimpleBar.defaultOptions = {
   autoHide: true,
   forceVisible: false,
   clickOnTrack: true,
+  clickOnTrackSpeed: 40,
   classNames: {
     contentEl: 'simplebar-content',
     contentWrapper: 'simplebar-content-wrapper',
@@ -945,21 +966,21 @@ SimpleBar.handleMutations = function (mutations) {
     Array.prototype.forEach.call(mutation.addedNodes, function (addedNode) {
       if (addedNode.nodeType === 1) {
         if (addedNode.hasAttribute('data-simplebar')) {
-          !SimpleBar.instances.has(addedNode) && new SimpleBar(addedNode, getOptions(addedNode.attributes));
+          !SimpleBar.instances.has(addedNode) && document.documentElement.contains(addedNode) && new SimpleBar(addedNode, getOptions(addedNode.attributes));
         } else {
           Array.prototype.forEach.call(addedNode.querySelectorAll('[data-simplebar]'), function (el) {
-            if (el.getAttribute('data-simplebar') !== 'init' && !SimpleBar.instances.has(el)) new SimpleBar(el, getOptions(el.attributes));
+            if (el.getAttribute('data-simplebar') !== 'init' && !SimpleBar.instances.has(el) && document.documentElement.contains(el)) new SimpleBar(el, getOptions(el.attributes));
           });
         }
       }
     });
     Array.prototype.forEach.call(mutation.removedNodes, function (removedNode) {
       if (removedNode.nodeType === 1) {
-        if (removedNode.hasAttribute('[data-simplebar="init"]')) {
-          SimpleBar.instances.has(removedNode) && SimpleBar.instances.get(removedNode).unMount();
+        if (removedNode.getAttribute('data-simplebar') === 'init') {
+          SimpleBar.instances.has(removedNode) && !document.documentElement.contains(removedNode) && SimpleBar.instances.get(removedNode).unMount();
         } else {
           Array.prototype.forEach.call(removedNode.querySelectorAll('[data-simplebar="init"]'), function (el) {
-            SimpleBar.instances.has(el) && SimpleBar.instances.get(el).unMount();
+            SimpleBar.instances.has(el) && !document.documentElement.contains(el) && SimpleBar.instances.get(el).unMount();
           });
         }
       }
