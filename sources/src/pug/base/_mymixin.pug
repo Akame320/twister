@@ -1,16 +1,16 @@
 //Формы
 mixin input-tel(object)
-    input.input-text(type='text' name='tel' required=object.required ? true: false placeholder = object.placeholder ? object.placeholder: 'Ваш телефон')
+    input.input-text(type='text' name='tel' placeholder = object.placeholder ? object.placeholder: 'Ваш телефон*')
 
 mixin input-name(object)
-    input.input-text(type='text' name='name' required=object.required ? true: false placeholder = object.placeholder ? object.placeholder: 'Ваше имя')
+    input.input-text(type='text' name='name' placeholder = object.placeholder ? object.placeholder: 'Ваше имя*')
 
 mixin input-email(object)
-    input.input-text(type='text' name='email' required=object.required ? true: false placeholder = object.placeholder ? object.placeholder: 'Ваша почта')
+    input.input-text(type='text' name='email' placeholder = object.placeholder ? object.placeholder: 'Ваша почта')
 mixin input-area(object)
     textarea.input-text(placeholder="Ваш комментарий..")
 mixin input-submit(object)
-    input.input-submit(type='submit' class=object.style value = object.value ? object.value: 'Отправить')
+    input.input-submit.btn.btn--secondary(type='submit' class=object.style value = object.value ? object.value: 'Отправить')
 
 
 //Графика
@@ -24,82 +24,13 @@ mixin setSvg(object)
     svg.icon
         use(xlink:href='images/skipped-optim.svg#' + object.name)
 
-//Текстовка
-mixin sectionTitle(object)
-    h2.section-title !{object.text}
-
-mixin sectionSubTitle(object)
-    span.section-subtitle !{object.text}
-
-mixin formTitle(object)
-    h6.form-title !{object.text}
-mixin formText(object)
-    p.form-text !{object.text}
-mixin formPolice(object)
-    p.form-police !{object.text}
-
-
-
-mixin servicesItems(object)
-    .services-list__item-wrapper(data-aos="fade-right")
-        a(href=object.link).services-list__item
-            .services-list__item-icon
-                +setSvg({name: object.icon})
-            .services-list__item-data
-                .services-list__item-title !{object.title}
-                p.services-list__item-text !{object.text}
-
-
-mixin whoWorkStep(object)
-    .section-whoWork__step(data-aos="fade-up")
-        .section-whoWork__step-inner
-            .section-whoWork__step-header
-                img(src=object.img).section-whoWork__step-img
-                .section-whoWork__step-row
-                    .section-whoWork__step-number !{object.number}
-                    .section-whoWork__step-title !{object.title}
-                p.section-whoWork__step-text !{object.text}
-            .section-whoWork__step-body
-                button.section-whoWork__step-btn.btn.btn-simple.popup-open Оставить заявку
-
-
-mixin letterSlide(object)
-    .section-letter__slide
-        a(href=object.bigimg data-fancybox='gallery' data-caption="My caption" data-type="image").section-letter__slide-inner
-            img(src=object.img).section-letter__slide-img
-
-mixin footerSocial(object)
-    li.footer__social-item
-        a(href=object.link).footer__social-link
-            +setSvg({name: object.icon})
-
-mixin socialItem(object)
-    .block-socials__item
-        .block-socials__item-inner
-            img(src=object.src).block-socials__icon
-
-
-mixin reviewsSlide(object)
-    .section-reviews__slide
-        .section-reviews__slide-inner
-            .section-reviews__slide-header
-                .section-reviews__slide-avatar
-                    img(src=object.src).icon
-                .section-reviews__slide-header-data
-                    .section-reviews__slide-name !{object.name}
-                    .section-reviews__slide-city !{object.city}
-            .section-reviews__slide-body
-                .section-reviews__slide-text !{object.text}
-
-mixin technologistItem(object)
-    li.section-technologist__item(data-aos='fade-down' data-aos-delay='500')
-        .section-technologist__item-inner
-            .section-technologist__item-icon
-                img(src=object.src).icon
-            .section-technologist__item-text !{object.text}
-
-
-mixin portfolioSiteSlide(object)
-    .section-site-portfolio__slide
-        a(href=object.bigsrc data-fancybox='siteGallery' data-caption="My caption 2" data-type="image").section-site-portfolio__slide-inner
-            img(src=object.src).section-site-portfolio__slide-img
+mixin homeReviewCard(object)
+    .home-reviews-card
+        .home-reviews-card__head
+            .home-reviews-card__name !{object.name}
+            .home-reviews-card__date !{object.date}
+            .home-reviews-card__place !{object.place}
+        .home-reviews-card__text !{object.text}\
+mixin navLinks(text, link="#")
+    li.nav-links__item
+        a(href=link).nav-links__link !{text}

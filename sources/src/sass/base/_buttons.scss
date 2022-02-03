@@ -10,95 +10,29 @@
   max-width: 100%;
   position: relative;
   text-transform: uppercase;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   line-height: 1.8rem;
   letter-spacing: .025em;
-  min-width: 18rem;
-  border-radius: .4rem;
-  min-height: 4.2rem;
-  padding: .5rem 1.5rem;
+  padding: 1.6rem 2.2rem;
+  font-weight: 900;
   transition: all $anim ease;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: inherit;
-    border-width: 1px;
-    border-style: solid;
-    transition: all $anim ease;
-  }
-
-  &.btn-lg {
-    font-size: 1.5rem;
-    line-height: 2.2rem;
-    min-height: 4.8rem;
-    font-weight: 600;
-  }
-
-  &.btn-wide {
-    width: 100%;
-  }
-}
-
-.btn-simple {
-  background: transparent;
-  color: $text-color;
-
-  border: 2px solid $color-main;
-
-  border-radius: 10000px;
-
-  text-transform: none;
-
-  font-size: 1.6rem;
-
-  padding: 1.5rem 3.2rem;
-
-  cursor: pointer;
-  outline: none;
-
-  transition: all .2s ease;
-  
-  @media screen and (max-width: $mobile-screen) {
-    font-size: 1.8rem;
-    padding: 2rem 3.2rem;
-  }
-
-  &:before {
-    border-color: white;
-  }
-
-  &:hover {
+  &--primary {
     background-color: $color-main;
     color: white;
+
+    &:hover {
+      box-shadow: 0px 4px 24px rgba(252, 115, 78, 0.43);
+    }
   }
 
-  &--black{
+  &--secondary {
+    background: black;
     color: white;
-  }
-}
 
-.btn-default {
-  background: $color-main;
-  color: $white!important;
-
-  border-radius: 1000px;
-
-  border: transparent;
-  outline: none;
-
-  min-height: 5.2rem;
-
-  &:before{
-    display: none;
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 24px #F28B41;
+    &:hover {
+      box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.97);
+    }
   }
 }

@@ -1,0 +1,40 @@
+.section-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: white;
+
+  padding: 0;
+  margin: 0;
+
+  &--base-margin {
+    margin-bottom: 3rem;
+  }
+}
+
+.paragraph {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: white;
+  line-height: 2.4rem;
+
+  padding: 0;
+  margin: 0;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+.list {
+  padding-left: 2rem;
+
+  &__li {
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

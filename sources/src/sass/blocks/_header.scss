@@ -1,0 +1,56 @@
+.header {
+  width: 100%;
+  padding: 1rem 0;
+  background: #262626;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__aside {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__logo {
+    width: 15.2rem;
+    height: 6rem;
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    list-style-type: none;
+    display: block;
+
+    &:not(:last-child) {
+      margin-right: 3rem;
+    }
+  }
+
+  &__link {
+    font-size: 2rem;
+    font-weight: 400;
+
+    color: white;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    transition: all 0.05s linear;
+
+    &:hover {
+      color: $color-main;
+    }
+  }
+}

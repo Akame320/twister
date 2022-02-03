@@ -1,0 +1,48 @@
+.footer {
+  padding: 10rem 0;
+  background-color: #262626;
+
+  &__logo {
+    width: 16rem;
+    height: 5.7rem;
+
+    background-color: red;
+  }
+
+  &__inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__data {
+    width: 21.3rem;
+
+    &-block {
+      &:not(:last-child) {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    &-row {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: white;
+      text-align: right;
+      display: block;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      &--link {
+        text-decoration: underline;
+        font-size: 1.8rem;
+
+        &:hover {
+          color: $color-main;
+        }
+      }
+    }
+  }
+}
