@@ -9,7 +9,7 @@ block page
                 p.home__text Если в вашей ванной комнате происходит ремонт, вы попали по адресу! Компания «Твист» успела зарекомендовать себя одним из крупнейших производителей прочных стеклянных дверей, заслужив лояльность тысяч клиентов.
                 .home__actions
                     button.btn.btn--primary Получить консультацию
-                    button.btn.btn--secondary Вызвать замерщика sss
+                    button.btn.btn--secondary Вызвать замерщика
     .home-advantages
         .container
             .home-advantages__inner
@@ -87,6 +87,23 @@ block page
                             span 4
                         .card-text-number__text
                             p.paragraph Нужна дополнительная информация по продукции или сопутствующим услугам? Менеджеры «Твист» ответят на все вопросы в чате на сайте, по телефону, в мессенджерах или офисе компании.
+    .home-port
+        .container
+            h2.section-title.section-title--base-margin Наши работы
+            .home-port__inner
+                .home-port__img.home-port__img--mock
+                .home-port__img.home-port__img--mock
+                .home-port__img.home-port__img--mock
+                .home-port__img.home-port__img--mock-2
+                .home-port__img.home-port__img--mock
+                .home-port__img.home-port__img--mock
+                .home-port__img.home-port__img--mock
+                .home-port__img.home-port__img--mock
+            .slider-arrow.home-port__arrows
+                button.slider-arrow__button.slider-arrow__button-prev.home-port-arrow-prev
+                    +setSvg({ name: 'arrow-prev' })
+                button.slider-arrow__button.slider-arrow__button-next.home-port-arrow-next
+                    +setSvg({ name: 'arrow-next' })
     .home-reviews
         .container
             h2.section-title.section-title--base-margin Отзывы

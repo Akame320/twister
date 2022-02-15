@@ -16,6 +16,20 @@
     justify-content: flex-end;
   }
 
+  &__nav {
+    @media screen and (max-width: $table-screen) {
+      display: none;
+    }
+  }
+
+  &__burger {
+    display: none;
+
+    @media screen and (max-width: $table-screen) {
+      display: block;
+    }
+  }
+
   &__logo {
     width: 15.2rem;
     height: 6rem;
@@ -30,15 +44,6 @@
   margin: 0;
   padding: 0;
 
-  &__item {
-    list-style-type: none;
-    display: block;
-
-    &:not(:last-child) {
-      margin-right: 3rem;
-    }
-  }
-
   &__link {
     font-size: 2rem;
     font-weight: 400;
@@ -51,6 +56,119 @@
 
     &:hover {
       color: $color-main;
+    }
+  }
+
+  &__dropdown-wrapper {
+    position: absolute;
+    top: 0;
+    transition: all 0.5s linear;
+    z-index: 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(2.6rem);
+  }
+
+  &__dropdown {
+    width: max-content;
+
+    background-color: white;
+    padding: 2rem 2.5rem;
+
+    margin-top: 1rem;
+
+    &-item {
+      width: 100%;
+
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &-link {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: black;
+
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      border: none;
+      transition: all 0.05s linear;
+
+      &:hover {
+        color: $color-main;
+      }
+    }
+  }
+
+  &__item {
+    list-style-type: none;
+    display: block;
+
+    &:not(:last-child) {
+      margin-right: 3rem;
+    }
+
+    &--dropdown {
+      position: relative;
+      z-index: 10;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      &:hover .nav-links__dropdown-wrapper {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+
+        width: 0;
+        height: 0;
+        border: 0 solid transparent;
+        border-left-width: 0.8rem;
+        border-right-width: 0.8rem;
+        border-top: 0.8rem solid $color-main;
+
+        margin-top: 0.2rem;
+      }
+
+      .nav-links__link {
+        margin-right: 1.3rem;
+      }
+    }
+  }
+}
+
+.burger {
+  width: 3rem;
+  height: 1.9rem;
+
+  position: relative;
+
+  &__line {
+    width: 100%;
+    height: 0.3rem;
+
+    background-color: $color-main;
+
+    position: absolute;
+
+    &--top {
+      top: 0;
+    }
+
+    &--mid {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--bot {
+      bottom: 0;
     }
   }
 }

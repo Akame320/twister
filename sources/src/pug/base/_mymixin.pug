@@ -34,3 +34,17 @@ mixin homeReviewCard(object)
 mixin navLinks(text, link="#")
     li.nav-links__item
         a(href=link).nav-links__link !{text}
+
+mixin navLinksDropdown(text, link)
+    li.nav-links__item.nav-links__item--dropdown
+        a(href=link).nav-links__link !{text}
+        .nav-links__dropdown-wrapper
+            .nav-links__dropdown
+                .nav-links__dropdown-item
+                    a(href='#').nav-links__dropdown-link Стеклянные двери в душ
+                .nav-links__dropdown-item
+                    a(href='#').nav-links__dropdown-link Душевые перегородки из стекла
+                .nav-links__dropdown-item
+                    a(href='#').nav-links__dropdown-link Душевые кабины
+                .nav-links__dropdown-item
+                    a(href='#').nav-links__dropdown-link Стекла

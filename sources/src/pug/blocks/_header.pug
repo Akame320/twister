@@ -6,10 +6,15 @@ header.header
                 .header__nav
                     ul.nav-links
                         +navLinks('Главная')
-                        +navLinks('Каталог')
+                        +navLinksDropdown('Каталог')
                         +navLinks('Наши работы')
                         +navLinks('Отзывы')
                         +navLinks('Отзывы')
                         +navLinks('О компании')
                         +navLinks('Контакты')
                         +navLinks('Блог')
+                .header__burger
+                    .burger
+                        .burger__line.burger__line--top
+                        .burger__line.burger__line--mid
+                        .burger__line.burger__line--bot

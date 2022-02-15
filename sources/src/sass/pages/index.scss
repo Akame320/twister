@@ -1,5 +1,3 @@
-//main-bg.jpg
-
 .home {
   background: url("../images/content/home/main-bg.jpg") center no-repeat;
   background-size: cover;
@@ -26,6 +24,10 @@
 
     margin-top: 0;
     margin-bottom: 3rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      font-size: 3.4rem;
+    }
   }
 
   &__text {
@@ -41,8 +43,17 @@
     align-items: stretch;
     justify-content: flex-start;
 
+    @media screen and (max-width: $mobile-screen) {
+      flex-direction: column;
+    }
+
     & > button:not(:last-child) {
       margin-right: 3rem;
+
+      @media screen and (max-width: $mobile-screen) {
+        margin-right: 0;
+        margin-bottom: 2rem;
+      }
     }
   }
 }
@@ -53,10 +64,18 @@
 
   background-color: #272727;
 
+  @media screen and (max-width: $table-screen) {
+    padding: 5rem 0;
+  }
+
   &__inner {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1.5rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   &__card {
@@ -79,16 +98,26 @@
     color: white;
 
     margin: 0;
+
+    text-align: center;
   }
 }
 
 .home-what {
   padding: 15rem 0;
 
+  @media screen and (max-width: $table-screen) {
+    padding: 10rem 0;
+  }
+
   &__subtitles-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 3rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__inner {
@@ -97,6 +126,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 3rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
 
@@ -140,11 +173,19 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 3rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
 
 .home-reviews {
-  padding: 15rem;
+  padding: 15rem 0;
+
+  @media screen and (max-width: $mobile-screen) {
+    padding: 5rem 0;
+  }
 
   &__inner {
     margin-top: -1.5rem;
@@ -165,14 +206,18 @@
   padding: 3rem;
   background: white;
 
+  @media screen and (max-width: $mobile-screen) {
+    padding: 2rem;
+  }
+
   &__head {
     display: grid;
-    grid-template-columns: 2fr 1fr 3fr;
+    grid-template-columns: 3fr 1fr 4fr;
     grid-row-gap: 1rem;
     align-items: center;
     grid-template-areas:
-      "a a b"
-      "c c c";
+      "a a a b"
+      "c c c c";
   }
 
   &__name {
@@ -210,6 +255,8 @@
   justify-content: space-between;
 
   &__button {
+    display: block;
+
     width: 10rem;
     height: 0.8rem;
 
@@ -246,5 +293,405 @@
     max-width: 101rem;
     margin-left: auto;
     margin-right: auto;
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: 1fr;
+      grid-gap: 2rem;
+    }
+  }
+}
+
+.home-port {
+  padding: 15rem 0;
+
+  @media screen and (max-width: $mobile-screen) {
+    padding: 5rem 0;
+  }
+
+  &__arrows {
+    width: 100%;
+    margin-top: 2rem;
+    display: none;
+
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: $mobile-screen) {
+      display: flex;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
+
+    @media screen and (max-width: $table-screen) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: $mobile-screen) {
+      display: block;
+    }
+  }
+
+  &__img {
+    padding-bottom: 100%;
+    display: block;
+
+    @media screen and (max-width: $mobile-screen) {
+      height: calc(100vw - 4rem);
+      padding-bottom: 0;
+    }
+
+    &--mock {
+      background-color: black;
+
+      &-2 {
+        background-color: red;
+      }
+    }
+  }
+}
+
+.custom-breadcrumbs {
+  margin: 3rem 0;
+  color: white;
+}
+
+.product-promo {
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem;
+    align-items: center;
+
+    @media screen and (max-width: $table-screen) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__img-main {
+    display: block;
+    width: 100%;
+    height: 65rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      height: 0;
+      padding-bottom: 100%;
+    }
+  }
+
+  &__title {
+    font-size: 3.1rem;
+    font-weight: 900;
+    color: white;
+    margin: 0;
+    padding: 0;
+
+    @media screen and (max-width: $mobile-screen) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__imgs-small {
+    width: 49%;
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 1rem;
+
+    @media screen and (max-width: $table-screen) {
+      width: 100%;
+    }
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__img-small {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+
+    display: block;
+  }
+
+  &__price-action {
+    margin-top: 3.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__price {
+    font-size: 3.1rem;
+    font-weight: 900;
+    color: white;
+
+    margin-right: 3rem;
+  }
+
+  &__table-heading {
+    margin-top: 3.5rem;
+
+    font-size: 2.1rem;
+    font-weight: 900;
+    color: white;
+  }
+
+  &__table-row {
+    margin-top: 3.5rem;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+
+    &-text {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: white;
+      min-width: max-content;
+
+      &--first {
+        margin-right: 1rem;
+      }
+
+      &--last {
+        margin-left: 1rem;
+      }
+    }
+
+    &-line {
+      height: 0.2rem;
+      background-color: white;
+      opacity: 0.34;
+      width: 100%;
+      transform: translateY(-0.5rem);
+    }
+  }
+}
+
+.product-tabs {
+  padding: 15rem 0;
+
+  @media screen and (max-width: $mobile-screen) {
+    padding: 5rem 0;
+  }
+
+  &__elem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media screen and (max-width: $mobile-screen) {
+      flex-wrap: wrap;
+      margin: -1rem -2rem;
+      margin-bottom: 2rem;
+    }
+
+    padding: 0;
+    margin: 0 0 4rem;
+  }
+
+  &__elem-item {
+    width: max-content;
+    list-style-type: none;
+    font-size: 2.1rem;
+    font-weight: 400;
+    opacity: 0.6;
+    color: white;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+
+    position: relative;
+
+    transition: all 0.05s linear;
+
+    @media screen and (max-width: $mobile-screen) {
+      padding: 1rem 2rem;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &--active {
+      opacity: 1;
+
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0.2rem;
+
+        background-color: $color-main;
+      }
+    }
+
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+
+  &__body {
+    width: 100%;
+    max-width: 75rem;
+
+    &--max {
+      max-width: none;
+    }
+
+    &-title {
+      margin: 0 0 3rem;
+      padding: 0;
+
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    &-paragraph {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: white;
+
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+    }
+
+    &-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 3rem;
+
+      @media screen and (max-width: $mobile-screen) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+.product-port {
+  .home-port {
+    padding: 0 0 15rem;
+  }
+}
+
+.catalog-section {
+  padding-bottom: 10rem;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
+
+    @media screen and (max-width: $table-screen) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+.catalog-card {
+  display: block;
+
+  &__img {
+    width: 100%;
+    padding-bottom: 100%;
+
+    margin-bottom: 1.5rem;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: white;
+
+    margin-bottom: 1.5rem;
+
+    &--no {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.u-mock {
+  background-color: black;
+}
+
+.blog-board {
+  width: 100%;
+  padding: 5rem 0 15rem;
+
+  @media screen and (max-width: $mobile-screen) {
+    padding-bottom: 10rem;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
+
+    @media screen and (max-width: $table-screen) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+.blog-post-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: column;
+
+  padding: 2rem 1.5rem;
+
+  width: 100%;
+  height: 100%;
+
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: white;
+
+  &__promo {
+    padding-bottom: 75%;
+    margin: -2rem -1.5rem;
+
+    margin-bottom: 2rem;
+    background-color: black;
+  }
+
+  &__top {
+    margin-bottom: 2rem;
+  }
+
+  &__bot {
+
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__text {
+    font-size: 1.6rem;
+  }
+
+  &__action {
+    max-width: 17rem;
   }
 }

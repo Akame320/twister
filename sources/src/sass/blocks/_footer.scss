@@ -15,6 +15,12 @@
     justify-content: space-between;
   }
 
+  &__nav {
+    @media screen and (max-width: $table-screen) {
+      display: none;
+    }
+  }
+
   &__data {
     width: 21.3rem;
 
