@@ -1,18 +1,17 @@
 header.header
     .container
         .header__inner
-            .header__logo
+            img.header__logo(src='images/content/logo/logo-header.svg')
             .header__aside
                 .header__nav
                     ul.nav-links
-                        +navLinks('Главная')
+                        +navLinks('Главная', './index.html')
                         +navLinksDropdown('Каталог')
-                        +navLinks('Наши работы')
-                        +navLinks('Отзывы')
-                        +navLinks('Отзывы')
-                        +navLinks('О компании')
-                        +navLinks('Контакты')
-                        +navLinks('Блог')
+                        +navLinks('Наши работы', 'index.html#port')
+                        +navLinks('Отзывы', 'index.html#reviews')
+                        +navLinks('О компании', 'about.html')
+                        +navLinks('Контакты', '#footer')
+                        +navLinks('Блог', 'blog.html')
                 .header__burger
                     .burger
                         .burger__line.burger__line--top

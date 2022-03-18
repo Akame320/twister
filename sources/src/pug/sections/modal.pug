@@ -1,0 +1,17 @@
+.modal
+    form.modal__form.modal-form
+        .modal-form__close(data-close-modal)
+            +setSvg({ name: 'close' })
+        .modal-form__inner
+            .modal-form__row
+                h2.modal-form__title Оставьте заявку
+            .modal-form__row
+                +input-name({})
+            .modal-form__row
+                +input-tel({})
+            .modal-form__row
+                +input-email({})
+            .modal-form__row
+                +input-area({})
+            .modal-form__row
+                +input-submit({})

@@ -38,6 +38,21 @@ $(document).ready(function () {
             nextArrow: $('button.home-port-arrow-next'),
         })
     }
+
+    $('[data-open-modal]').on("click", function () {
+        $('.modal').addClass('modal-active');
+    })
+
+    $('[data-close-modal]').on("click", function () {
+        $('.modal').removeClass('modal-active');
+    })
+
+    $('[data-href]').on('click', function (event) {
+        event.preventDefault()
+        let getLink = $(this).attr("data-href");
+        let positionElemY = $(getLink)[0].offsetTop;
+        $('html').animate({scrollTop: positionElemY - 150}, 1100);
+    })
 });
 
 

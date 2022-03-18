@@ -72,12 +72,11 @@
     <div class="layout">
       <header class="header">
         <div class="container">
-          <div class="header__inner">
-            <div class="header__logo"></div>
+          <div class="header__inner"><img class="header__logo" src="images/content/logo/logo-header.svg">
             <div class="header__aside">
               <div class="header__nav">
                 <ul class="nav-links">
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">Главная</a></li>
+                  <li class="nav-links__item"><a class="nav-links__link" href="./index.html">Главная</a></li>
                   <li class="nav-links__item nav-links__item--dropdown"><a class="nav-links__link">Каталог</a>
                     <div class="nav-links__dropdown-wrapper">
                       <div class="nav-links__dropdown">
@@ -88,12 +87,11 @@
                       </div>
                     </div>
                   </li>
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">Наши работы</a></li>
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">Отзывы</a></li>
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">Отзывы</a></li>
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">О компании</a></li>
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">Контакты</a></li>
-                  <li class="nav-links__item"><a class="nav-links__link" href="#">Блог</a></li>
+                  <li class="nav-links__item"><a class="nav-links__link" href="index.html#port">Наши работы</a></li>
+                  <li class="nav-links__item"><a class="nav-links__link" href="index.html#reviews">Отзывы</a></li>
+                  <li class="nav-links__item"><a class="nav-links__link" href="about.html">О компании</a></li>
+                  <li class="nav-links__item"><a class="nav-links__link" href="#footer">Контакты</a></li>
+                  <li class="nav-links__item"><a class="nav-links__link" href="blog.html">Блог</a></li>
                 </ul>
               </div>
               <div class="header__burger">
@@ -114,7 +112,7 @@
               <h1 class="home__title">Изготовление стеклянных дверей для душа на заказ</h1>
               <p class="home__text">Если в вашей ванной комнате происходит ремонт, вы попали по адресу! Компания «Твист» успела зарекомендовать себя одним из крупнейших производителей прочных стеклянных дверей, заслужив лояльность тысяч клиентов.</p>
               <div class="home__actions">
-                <button class="btn btn--primary">Получить консультацию</button>
+                <button class="btn btn--primary" data-open-modal>Получить консультацию</button>
                 <button class="btn btn--secondary">Вызвать замерщика</button>
               </div>
             </div>
@@ -238,7 +236,7 @@
             </div>
           </div>
         </div>
-        <div class="home-port">
+        <div class="home-port" id="port">
           <div class="container">
             <h2 class="section-title section-title--base-margin">Наши работы</h2>
             <div class="home-port__inner">
@@ -265,7 +263,7 @@
             </div>
           </div>
         </div>
-        <div class="home-reviews">
+        <div class="home-reviews" id="reviews">
           <div class="container">
             <h2 class="section-title section-title--base-margin">Отзывы</h2>
             <div class="home-reviews__inner home-reviews-slider">
@@ -348,11 +346,10 @@
       </main>
       <div class="footer">
         <div class="container">
-          <div class="footer__inner">
-            <div class="footer__logo"></div>
+          <div class="footer__inner"><img class="footer__logo" src="images/content/logo/logo.png">
             <div class="footer__nav">
               <ul class="nav-links">
-                <li class="nav-links__item"><a class="nav-links__link" href="#">Главная</a></li>
+                <li class="nav-links__item"><a class="nav-links__link" href="./index.html">Главная</a></li>
                 <li class="nav-links__item nav-links__item--dropdown"><a class="nav-links__link">Каталог</a>
                   <div class="nav-links__dropdown-wrapper">
                     <div class="nav-links__dropdown">
@@ -363,11 +360,11 @@
                     </div>
                   </div>
                 </li>
-                <li class="nav-links__item"><a class="nav-links__link" href="#">Наши работы</a></li>
-                <li class="nav-links__item"><a class="nav-links__link" href="#">Отзывы</a></li>
-                <li class="nav-links__item"><a class="nav-links__link" href="#">О компании</a></li>
-                <li class="nav-links__item"><a class="nav-links__link" href="#">Контакты</a></li>
-                <li class="nav-links__item"><a class="nav-links__link" href="#">Блог</a></li>
+                <li class="nav-links__item"><a class="nav-links__link" href="index.html#port">Наши работы</a></li>
+                <li class="nav-links__item"><a class="nav-links__link" href="index.html#reviews">Отзывы</a></li>
+                <li class="nav-links__item"><a class="nav-links__link" href="about.html">О компании</a></li>
+                <li class="nav-links__item"><a class="nav-links__link" href="#footer">Контакты</a></li>
+                <li class="nav-links__item"><a class="nav-links__link" href="blog.html">Блог</a></li>
               </ul>
             </div>
             <div class="footer__data">
@@ -379,6 +376,35 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="modal">
+        <form class="modal__form modal-form">
+          <div class="modal-form__close" data-close-modal>
+            <svg class="icon">
+              <use xlink:href="images/skipped-optim.svg#close"></use>
+            </svg>
+          </div>
+          <div class="modal-form__inner">
+            <div class="modal-form__row">
+              <h2 class="modal-form__title">Оставьте заявку</h2>
+            </div>
+            <div class="modal-form__row">
+              <input class="input-text" type="text" name="name" placeholder="Ваше имя*"/>
+            </div>
+            <div class="modal-form__row">
+              <input class="input-text" type="text" name="tel" placeholder="Ваш телефон*"/>
+            </div>
+            <div class="modal-form__row">
+              <input class="input-text" type="text" name="email" placeholder="Ваша почта"/>
+            </div>
+            <div class="modal-form__row">
+              <textarea class="input-text input-area" placeholder="Ваш комментарий.."></textarea>
+            </div>
+            <div class="modal-form__row">
+              <input class="input-submit btn btn--secondary" type="submit" value="Отправить"/>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <script src="js/main.min.js"></script>

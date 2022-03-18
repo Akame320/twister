@@ -1,16 +1,16 @@
 .footer
     .container
         .footer__inner
-            .footer__logo
+            img.footer__logo(src='images/content/logo/logo.png')
             .footer__nav
                 ul.nav-links
-                    +navLinks('Главная')
+                    +navLinks('Главная', './index.html')
                     +navLinksDropdown('Каталог')
-                    +navLinks('Наши работы')
-                    +navLinks('Отзывы')
-                    +navLinks('О компании')
-                    +navLinks('Контакты')
-                    +navLinks('Блог')
+                    +navLinks('Наши работы', 'index.html#port')
+                    +navLinks('Отзывы', 'index.html#reviews')
+                    +navLinks('О компании', 'about.html')
+                    +navLinks('Контакты', '#footer')
+                    +navLinks('Блог', 'blog.html')
             .footer__data
                 .footer__data-block
                     a(href='tel: +79104497878').footer__data-row.footer__data-row--link 8-910-449-78-78
@@ -18,3 +18,4 @@
                 .footer__data-block
                     .footer__data-row г. Москва, ул. Бутлерова д.4
                     .footer__data-row Время работы с 9 до 19
+include ../sections/modal
