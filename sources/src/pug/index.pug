@@ -87,6 +87,40 @@ block page
                             span 4
                         .card-text-number__text
                             p.paragraph Нужна дополнительная информация по продукции или сопутствующим услугам? Менеджеры «Твист» ответят на все вопросы в чате на сайте, по телефону, в мессенджерах или офисе компании.
+    .home-calc
+        .container
+            h2.section-title.section-title--base-margin Душевые кабины по вашим размерам
+            form.home-calc__form
+                .home-calc-form
+                    h3.home-calc-form__title Сделайте ваше изделие эксклюзивным
+                    .home-calc-form__subtitle Укажите Ваш планируемый бюджет, размеры изделия и контактные данные <br> Наш дизайнер подберет оригинальный и необычный вариант
+                    .home-calc-form__value Ваш бюджет: <strong class="c-range-output"> ₽</strong>
+                    .home-calc-form__radio
+                        input(type="range"
+                            min="0"
+                            max="500000"
+                            step="1"
+                            value="0"
+                            data-orientation="horizontal"
+                        )
+                    .home-calc-form__dec-wrapper
+                        .home-calc-form__dec.home-calc-form__dec--des
+                            +setSvg({ name: 'vertical-lines' })
+                        .home-calc-form__dec.home-calc-form__dec--mobile
+                            +setSvg({ name: 'vertical-line-mobile' })
+                        .home-calc-form__dec-inner
+                            span 0
+                            span 500 000
+                    .home-calc-form__inputs-grid
+                        .home-calc-form__area
+                            +input-area({ placeholder: 'Размеры и пожелания' })
+                        .home-calc-form__name
+                            +input-name({})
+                        .home-calc-form__tel
+                            +input-tel({})
+                        .home-calc-form__submit
+                            +input-submit({})
+
     .home-port(id='port')
         .container
             h2.section-title.section-title--base-margin Наши работы

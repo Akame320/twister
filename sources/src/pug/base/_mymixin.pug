@@ -8,7 +8,7 @@ mixin input-name(object)
 mixin input-email(object)
     input.input-text(type='text' name='email' placeholder = object.placeholder ? object.placeholder: 'Ваша почта')
 mixin input-area(object)
-    textarea.input-text.input-area(placeholder="Ваш комментарий..")
+    textarea.input-text.input-area(placeholder = object.placeholder ? object.placeholder: "Ваш комментарий..")
 mixin input-submit(object)
     input.input-submit.btn.btn--secondary(type='submit' class=object.style value = object.value ? object.value: 'Отправить')
 

@@ -1,4 +1,18 @@
 $(document).ready(function () {
+    var rangesliderUnit = ' ₽';
+    $('input[type="range"]').rangeslider({
+        polyfill : false,
+        onInit : function() {
+        },
+        onSlide : function( position, value ) {
+            $('.c-range-output').text(value + rangesliderUnit)
+        },
+
+        handleClass: 'my-slider__handle',
+        fillClass: 'my-slider__fill',
+        rangeClass: 'my-slider',
+    });
+
     $('.home-reviews-slider').slick({
         slidesToShow: 3,
         slidesToScroll: 3,
@@ -53,6 +67,7 @@ $(document).ready(function () {
         let positionElemY = $(getLink)[0].offsetTop;
         $('html').animate({scrollTop: positionElemY - 150}, 1100);
     })
+
 });
 
 

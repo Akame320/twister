@@ -819,3 +819,220 @@
     }
   }
 }
+
+.home-calc {
+
+  margin-top: 10rem;
+  margin-bottom: 3rem;
+
+  &__form {
+    background-color: #FC734E;
+  }
+}
+
+.home-calc-form {
+  max-width: 101rem;
+  width: 100%;
+
+  padding: 4rem 1rem 9rem;
+
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+
+  @media screen and (max-width: $mobile-screen) {
+    padding-bottom: 3rem;
+  }
+
+  &__title {
+    margin-top: 0;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 3rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.6rem;
+    font-weight: 200;
+    line-height: 3rem;
+    margin-bottom: 4rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+  }
+
+  &__value {
+    font-size: 2rem;
+    font-weight: 400;
+
+    @media screen and (max-width: $mobile-screen) {
+      font-size: 2.4rem;
+      text-align: center;
+    }
+  }
+
+  &__dec-wrapper {
+    margin-bottom: 2.5rem;
+  }
+
+  &__dec {
+    width: 100%;
+    height: 1rem;
+    margin-top: 1.5rem;
+
+    @media screen and (max-width: $mobile-screen) {
+      height: 1.4rem;
+      margin-top: 2.4rem;
+    }
+
+    &--mobile {
+      display: none;
+
+      @media screen and (max-width: $mobile-screen) {
+        display: block;
+      }
+    }
+
+    &--des {
+      display: block;
+
+      @media screen and (max-width: $mobile-screen) {
+        display: none;
+      }
+    }
+  }
+
+  &__dec-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+
+    margin-top: 1rem;
+  }
+
+  &__inputs-grid {
+    display: grid;
+    grid-template-columns: 360 / 1010 * 100% 360 / 1010 * 100% 230 / 1010 * 100%;
+    grid-gap: 3rem;
+    grid-row-gap: 2rem;
+    grid-template-areas:
+  'AA AA AA'
+  'NN TT SS';
+
+    @media screen and (max-width: $mobile-screen) {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'AA'
+      'NN'
+      'TT'
+      'SS';
+
+      margin-top: 4rem;
+    }
+
+    .input-area {
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+
+      height: 4.8rem;
+      min-height: 4.8rem;
+      max-height: 4.8rem;
+    }
+
+    .input-text {
+      width: 100%;
+    }
+
+    .input-submit {
+      width: 100%;
+    }
+  }
+
+  &__area {
+    grid-area: AA;
+  }
+
+  &__name {
+    grid-area: NN;
+  }
+
+  &__tel {
+    grid-area: TT;
+  }
+
+  &__submit {
+    grid-area: SS;
+  }
+}
+
+.my-slider {
+  height: 0.7rem;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+
+  margin-top: 2.8rem;
+}
+
+.my-slider__handle {
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+
+  top: 50% !important;
+  transform: translate(0, -50%);
+
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:after {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.my-slider__fill {
+  background-color: white;
+  height: 100%;
+}
+
+.slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.home-reviews-card {
+  height: 100%;
+}
+
+.slick-slide {
+  height: auto;
+}
+
+.b-breadcrumbs__link {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.b-breadcrumbs__text {
+  color: #B5B5B5;
+  font-size: 1.4rem;
+  font-weight: 400;
+  opacity: 0.5;
+}

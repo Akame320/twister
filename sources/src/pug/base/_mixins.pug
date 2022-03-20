@@ -1,10 +1,10 @@
 mixin breadcrumbs(arr,cur)
     .b-breadcrumbs
-        .container
-            each v in arr
-                a(href="#").b-breadcrumbs__link=v
-            if cur!=''
-                span.b-breadcrumbs__text=cur
+        each v in arr
+            a(href="#").b-breadcrumbs__link=v
+            span &#32; / &#32;
+        if cur!=''
+            span.b-breadcrumbs__text=cur
 
 
 mixin svgGradient(iconId, startColor, endColor)

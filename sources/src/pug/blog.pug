@@ -4,7 +4,9 @@ block head
 block page
     .custom-breadcrumbs
         .container
-            .custom-breadcrumbs__text lorem ipsum....
+            .blog-main__breadcumbs
+                .custom-breadcrumbs
+                    +breadcrumbs(['Главная'], 'Блог')
     .blog-board
         .container
             .blog-board__inner
